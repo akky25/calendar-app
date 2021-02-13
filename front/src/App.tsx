@@ -1,5 +1,6 @@
 import { FC } from "react";
-import CalenderBoard from "./components/CalendarBoard/CalendarBoard";
+
+import CalenderBoard from "containers/CalendarBoard/CalendarBoard";
 
 const App: FC = () => (
   <div>

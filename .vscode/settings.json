@@ -34,5 +34,8 @@
   // stylelin設定
   "css.validate": false,
   "less.validate":false,
-  "scss.validate":false,
+  "scss.validate": false,
+  "eslint.workingDirectories": [
+    "./front"
+  ],
 }
