@@ -1,22 +1,22 @@
 import { FC } from "react";
 import { Typography } from "@material-ui/core";
-import dayjs from "dayjs";
 
 import styles from "./style.module.css";
 
 type Props = {
-  day: dayjs.Dayjs;
+  dayOfWeek: string;
 };
 
-const CalendarElement: FC<Props> = ({ day }) => (
+const CalendarElement: FC<Props> = ({ dayOfWeek }) => (
   <div className={styles.element}>
     <Typography
-      className={styles.date}
+      className={styles.days}
+      color="textSecondary"
       align="center"
       variant="caption"
       component="div"
     >
-      {day.format(day.date() === 1 ? "M月D日" : "D")}
+      {dayOfWeek}
     </Typography>
   </div>
 );

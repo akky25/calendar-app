@@ -3,3 +3,8 @@
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
+
+.date {
+  height: 24px;
+  padding: 5px 0;
+}
