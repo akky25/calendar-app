@@ -2,7 +2,7 @@ import { FC } from "react";
 import { GridList } from "@material-ui/core";
 import dayjs from "dayjs";
 
-import CalendarElement from "components/CalendarElement/CalendarElement";
+import CalendarElement from "containers/CalendarElement/CalendarElement";
 import DayOfWeekElement from "components/DayOfWeekElement/DayOfWeekElement";
 import styles from "./style.module.css";
 
