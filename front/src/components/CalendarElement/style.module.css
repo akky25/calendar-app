@@ -8,3 +8,12 @@
   height: 24px;
   padding: 5px 0;
 }
+
+.today {
+  display: inline-block;
+  width: 24px;
+  line-height: 24px;
+  color: #fff;
+  background-color: #1a73e8;
+  border-radius: 50%;
+}
