@@ -9,14 +9,20 @@ type Props = {
 };
 
 const CalendarElement: FC<Props> = ({ day }) => {
+  // 当日かどうか判断
   const today = dayjs();
   const compareFormat = "YYYYMMDD";
   const isToday = day.format(compareFormat) === today.format(compareFormat);
+
+  // 今月以外をグレーダウン
+  const textColor =
+    day.month() === today.month() ? "textPrimary" : "textSecondary";
 
   return (
     <div className={styles.element}>
       <Typography
         className={styles.date}
+        color={textColor}
         align="center"
         variant="caption"
         component="div"
