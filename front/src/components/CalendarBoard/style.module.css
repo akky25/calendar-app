@@ -1,0 +1,13 @@
+.container {
+  height: 90vh;
+}
+
+.grid {
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+}
+
+.days {
+  padding-top: 10px;
+  border-right: 1px solid #ccc;
+}
