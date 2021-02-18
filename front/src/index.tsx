@@ -1,13 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
 import "./index.css";
+import { calendarSlice } from "redux/calendar/calendar-slice";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const store = configureStore({ reducer: calendarSlice.reducer });
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
 
