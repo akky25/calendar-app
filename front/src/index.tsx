@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { configureStore } from "@reduxjs/toolkit";
+import dayjs from "dayjs";
 import { Provider } from "react-redux";
-import "./index.css";
-import { calendarSlice } from "redux/calendar/calendar-slice";
+
+import store from "redux/rootSlice";
 import App from "./App";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-const store = configureStore({ reducer: calendarSlice.reducer });
+dayjs.locale("ja");
 
 ReactDOM.render(
   <Provider store={store}>
