@@ -5,6 +5,11 @@ import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIos from "@material-ui/icons/ArrowForwardIos";
 import DehazeIcon from "@material-ui/icons/Dehaze";
 
+type Props = {
+  setNextMonth: () => void;
+  setPreviousMonth: () => void;
+};
+
 const useStyledToolbar = makeStyles({
   root: { padding: "0" },
 });
@@ -13,7 +18,7 @@ const useStyledTypography = makeStyles({
   root: { margin: "0 30px 0 10px" },
 });
 
-const Navigation: FC = () => {
+const Navigation: FC<Props> = ({ setNextMonth, setPreviousMonth }) => {
   const classesToolbar = useStyledToolbar();
   const classesTypography = useStyledTypography();
 
@@ -30,10 +35,10 @@ const Navigation: FC = () => {
       >
         カレンダー
       </Typography>
-      <IconButton size="small">
+      <IconButton size="small" onClick={setPreviousMonth}>
         <ArrowBackIos />
       </IconButton>
-      <IconButton size="small">
+      <IconButton size="small" onClick={setNextMonth}>
         <ArrowForwardIos />
       </IconButton>
     </Toolbar>
