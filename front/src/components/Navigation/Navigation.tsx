@@ -14,18 +14,6 @@ type Props = {
   month: dayjs.Dayjs | null;
 };
 
-// const useStyledToolbar = makeStyles({
-//   root: { padding: "0" },
-// });
-
-// const useStyledTypography = makeStyles({
-//   root: { margin: "0 30px 0 10px" },
-// });
-
-// const useStyledDatePicker = makeStyles({
-//   root: { marginLeft: 30 },
-// });
-
 const useStyled = makeStyles({
   toolbar: { padding: "0" },
   typography: { margin: "0 30px 0 10px" },
@@ -38,9 +26,6 @@ const Navigation: FC<Props> = ({
   setMonth,
   month,
 }) => {
-  // const classesToolbar = useStyledToolbar();
-  // const classesTypography = useStyledTypography();
-  // const classesDatePicker = useStyledDatePicker();
   const classes = useStyled();
 
   return (

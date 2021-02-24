@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import CalendarBoard from "components/CalendarBoard/CalendarBoard";
 import { CalendarState } from "redux/calendar/calendar-slice";
+import { scheduleSlice } from "redux/schedule/schedule-slice";
 import { rootType } from "redux/rootSlice";
-
 import { createCalendar } from "services/calendar";
 
 const EnhancedCalendarBoard: FC = () => {
@@ -13,7 +13,17 @@ const EnhancedCalendarBoard: FC = () => {
   );
   const calendarArr = createCalendar(calendar);
 
-  return <CalendarBoard calendar={calendarArr} month={calendar} />;
+  const dispatch = useDispatch();
+  const openAddScheduleDialog = () =>
+    dispatch(scheduleSlice.actions.addScheduleOpenDialog());
+
+  return (
+    <CalendarBoard
+      calendar={calendarArr}
+      month={calendar}
+      openAddScheduleDialog={openAddScheduleDialog}
+    />
+  );
 };
 
 export default EnhancedCalendarBoard;

@@ -10,11 +10,16 @@ import styles from "./style.module.css";
 type Props = {
   calendar: dayjs.Dayjs[];
   month: CalendarState;
+  openAddScheduleDialog: () => void;
 };
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
 
-const CalendarBoard: FC<Props> = ({ calendar, month }) => (
+const CalendarBoard: FC<Props> = ({
+  calendar,
+  month,
+  openAddScheduleDialog,
+}) => (
   <div className={styles.container}>
     <GridList className={styles.grid} cols={7} spacing={0} cellHeight="auto">
       {days.map((d) => (
@@ -23,7 +28,12 @@ const CalendarBoard: FC<Props> = ({ calendar, month }) => (
         </li>
       ))}
       {calendar.map((c) => (
-        <li key={c.toISOString()}>
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+        <li
+          key={c.toISOString()}
+          onClick={openAddScheduleDialog}
+          onKeyUp={openAddScheduleDialog}
+        >
           <CalendarElement day={c} month={month} />
         </li>
       ))}
