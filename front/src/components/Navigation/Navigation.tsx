@@ -1,11 +1,5 @@
 import { FC } from "react";
-import {
-  IconButton,
-  Toolbar,
-  Typography,
-  makeStyles,
-  Button,
-} from "@material-ui/core";
+import { IconButton, Toolbar, Typography, makeStyles } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
@@ -20,20 +14,22 @@ type Props = {
   month: dayjs.Dayjs | null;
 };
 
-const useStyledToolbar = makeStyles({
-  root: { padding: "0" },
-});
+// const useStyledToolbar = makeStyles({
+//   root: { padding: "0" },
+// });
 
-const useStyledTypography = makeStyles({
-  root: { margin: "0 30px 0 10px" },
-});
+// const useStyledTypography = makeStyles({
+//   root: { margin: "0 30px 0 10px" },
+// });
 
-const useStyledDatePicker = makeStyles({
-  root: { marginLeft: 30 },
-});
+// const useStyledDatePicker = makeStyles({
+//   root: { marginLeft: 30 },
+// });
 
-const useStyledButton = makeStyles({
-  root: { color: "black" },
+const useStyled = makeStyles({
+  toolbar: { padding: "0" },
+  typography: { margin: "0 30px 0 10px" },
+  datePicker: { marginLeft: 30 },
 });
 
 const Navigation: FC<Props> = ({
@@ -42,14 +38,13 @@ const Navigation: FC<Props> = ({
   setMonth,
   month,
 }) => {
-  const classesToolbar = useStyledToolbar();
-  const classesTypography = useStyledTypography();
-  const classesDatePicker = useStyledDatePicker();
-
-  const classesButton = useStyledButton();
+  // const classesToolbar = useStyledToolbar();
+  // const classesTypography = useStyledTypography();
+  // const classesDatePicker = useStyledDatePicker();
+  const classes = useStyled();
 
   return (
-    <Toolbar className={classesToolbar.root}>
+    <Toolbar className={classes.toolbar}>
       <IconButton>
         <DehazeIcon />
       </IconButton>
@@ -57,7 +52,7 @@ const Navigation: FC<Props> = ({
       <Typography
         color="textSecondary"
         variant="h5"
-        className={classesTypography.root}
+        className={classes.typography}
       >
         カレンダー
       </Typography>
@@ -74,20 +69,12 @@ const Navigation: FC<Props> = ({
         format="YYYY年 M月"
         animateYearScrolling
         disableToolbar
-        className={classesDatePicker.root}
+        className={classes.datePicker}
         InputProps={{
           disableUnderline: true,
+          style: { fontSize: 25 },
         }}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        // className={classesButton.root}
-        // classes={{ root: classesButton.root }}
-        classes={{ label: classesButton.root }}
-      >
-        Primary
-      </Button>
     </Toolbar>
   );
 };
