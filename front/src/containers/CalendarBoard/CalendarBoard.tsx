@@ -1,24 +1,20 @@
 import { FC } from "react";
-import dayjs from "dayjs";
-import "dayjs/locale/ja";
+// import dayjs from "dayjs";
+import { useSelector } from "react-redux";
 
 import CalendarBoard from "components/CalendarBoard/CalendarBoard";
+import { CalendarState } from "redux/calendar/calendar-slice";
+import { rootType } from "redux/rootSlice";
 
-dayjs.locale("ja");
+import { createCalendar } from "services/calendar";
 
-const createCalendar = () => {
-  const firstDay = dayjs().startOf("month");
-  const firstDayIndex = firstDay.day();
+const EnhancedCalendarBoard: FC = () => {
+  const calendar = useSelector<rootType, CalendarState>(
+    (state) => state.calendar
+  );
+  const calendarArr = createCalendar(calendar);
 
-  return Array.from(new Array(35)).map((_, i) => {
-    const diffFromFirstDay = i - firstDayIndex;
-    const day = firstDay.add(diffFromFirstDay, "day");
-
-    return day;
-  });
+  return <CalendarBoard calendar={calendarArr} month={calendar} />;
 };
-
-const calendar = createCalendar();
-const EnhancedCalendarBoard: FC = () => <CalendarBoard calendar={calendar} />;
 
 export default EnhancedCalendarBoard;
