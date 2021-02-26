@@ -5,12 +5,13 @@ import dayjs from "dayjs";
 import CalendarElement from "containers/CalendarElement/CalendarElement";
 import DayOfWeekElement from "components/DayOfWeekElement/DayOfWeekElement";
 import { CalendarState } from "redux/calendar/calendar-slice";
+import { Form } from "redux/schedule/schedule-slice";
 import styles from "./style.module.css";
 
 type Props = {
   calendar: dayjs.Dayjs[];
   month: CalendarState;
-  openAddScheduleDialog: () => void;
+  openAddScheduleDialog: (value: Form) => void;
 };
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
@@ -27,16 +28,16 @@ const CalendarBoard: FC<Props> = ({
           <DayOfWeekElement dayOfWeek={d} />
         </li>
       ))}
-      {calendar.map((c) => (
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        <li
-          key={c.toISOString()}
-          onClick={openAddScheduleDialog}
-          onKeyUp={openAddScheduleDialog}
-        >
-          <CalendarElement day={c} month={month} />
-        </li>
-      ))}
+      {calendar.map((c) => {
+        const onclick = () => openAddScheduleDialog({ date: c });
+
+        return (
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+          <li key={c.toISOString()} onClick={onclick} onKeyUp={onclick}>
+            <CalendarElement day={c} month={month} />
+          </li>
+        );
+      })}
     </GridList>
   </div>
 );

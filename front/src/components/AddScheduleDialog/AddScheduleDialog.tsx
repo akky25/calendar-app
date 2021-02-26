@@ -7,12 +7,14 @@ import {
   Button,
   Input,
   Grid,
+  IconButton,
   makeStyles,
 } from "@material-ui/core";
 import {
   LocationOnOutlined,
   NotesOutlined,
   AccessTime,
+  Close,
 } from "@material-ui/icons";
 import { DatePicker } from "@material-ui/pickers";
 import dayjs from "dayjs";
@@ -58,6 +60,11 @@ const AddScheduleDialog: FC<Props> = ({
 
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
+      <DialogActions>
+        <IconButton onClick={closeDialog} size="small">
+          <Close />
+        </IconButton>
+      </DialogActions>
       <DialogContent>
         <Input />
         <TextField />
