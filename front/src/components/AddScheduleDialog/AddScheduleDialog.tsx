@@ -9,7 +9,13 @@ import {
   Grid,
   makeStyles,
 } from "@material-ui/core";
-import { LocationOnOutlined, NotesOutlined } from "@material-ui/icons";
+import {
+  LocationOnOutlined,
+  NotesOutlined,
+  AccessTime,
+} from "@material-ui/icons";
+import { DatePicker } from "@material-ui/pickers";
+import dayjs from "dayjs";
 
 import { Form, ScheduleState } from "redux/schedule/schedule-slice";
 
@@ -31,7 +37,7 @@ const useStyled = makeStyles({
 
 const AddScheduleDialog: FC<Props> = ({
   schedule: {
-    form: { title, location, description },
+    form: { title, location, description, date },
     isDialogOpen,
   },
   closeDialog,
@@ -48,6 +54,8 @@ const AddScheduleDialog: FC<Props> = ({
   const setDescription = (e: ChangeEvent<HTMLInputElement>): void =>
     setSchedule({ description: e.target.value });
 
+  const setDate = (d: dayjs.Dayjs | null): void => setSchedule({ date: d });
+
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
       <DialogContent>
@@ -61,6 +69,23 @@ const AddScheduleDialog: FC<Props> = ({
           value={title}
           onChange={setTile}
         />
+        <Grid container spacing={1} alignItems="center" justify="space-between">
+          <Grid item>
+            <AccessTime />
+          </Grid>
+          <Grid item xs={10}>
+            <DatePicker
+              variant="inline"
+              format="YYYY年M月D日"
+              animateYearScrolling
+              disableToolbar
+              fullWidth
+              className={classes.textfield}
+              value={date}
+              onChange={setDate}
+            />
+          </Grid>
+        </Grid>
         <Grid container spacing={1} alignItems="center" justify="space-between">
           <Grid item>
             <LocationOnOutlined />

@@ -15,7 +15,7 @@ const initialState: ScheduleState = {
   form: {
     title: "",
     description: "",
-    date: null,
+    date: dayjs(),
     location: "",
   },
   isDialogOpen: false,
