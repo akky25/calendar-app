@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 
-type Form = {
-  title: string;
-  description: string;
-  date: dayjs.Dayjs | null;
-  location: string;
+export type Form = {
+  title?: string;
+  description?: string;
+  date?: dayjs.Dayjs | null;
+  location?: string;
 };
 export type ScheduleState = {
   form: Form;
@@ -25,7 +25,7 @@ export const scheduleSlice = createSlice({
   name: "schedule",
   initialState,
   reducers: {
-    addScheduleSetValue: (state, action: PayloadAction<ScheduleState>) => ({
+    addScheduleSetValue: (state, action: PayloadAction<Form>) => ({
       ...state,
       form: { ...state.form, ...action.payload },
     }),
