@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import CalendarBoard from "components/CalendarBoard/CalendarBoard";
 import { CalendarState } from "redux/calendar/calendar-slice";
-import { Form, scheduleSlice } from "redux/schedule/schedule-slice";
+import { Form } from "redux/stateType";
+import { scheduleSlice } from "redux/addSchedule/add-schedule-slice";
 import { rootType } from "redux/rootSlice";
 import { createCalendar } from "services/calendar";
 

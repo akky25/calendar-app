@@ -19,7 +19,7 @@ import {
 import { DatePicker } from "@material-ui/pickers";
 import dayjs from "dayjs";
 
-import { Form, ScheduleState } from "redux/schedule/schedule-slice";
+import { Form, ScheduleState } from "redux/stateType";
 
 type Props = {
   schedule: ScheduleState;

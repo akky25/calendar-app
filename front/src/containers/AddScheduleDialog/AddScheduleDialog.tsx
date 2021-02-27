@@ -2,11 +2,8 @@ import { FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import AddScheduleDialog from "components/AddScheduleDialog/AddScheduleDialog";
-import {
-  Form,
-  ScheduleState,
-  scheduleSlice,
-} from "redux/schedule/schedule-slice";
+import { scheduleSlice } from "redux/addSchedule/add-schedule-slice";
+import { Form, ScheduleState } from "redux/stateType";
 import { rootType } from "redux/rootSlice";
 
 const EnhancedAddScheduleDialog: FC = () => {

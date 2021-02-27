@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import CalendarElement from "containers/CalendarElement/CalendarElement";
 import DayOfWeekElement from "components/DayOfWeekElement/DayOfWeekElement";
 import { CalendarState } from "redux/calendar/calendar-slice";
-import { Form } from "redux/schedule/schedule-slice";
+import { Form } from "redux/stateType";
 import styles from "./style.module.css";
 
 type Props = {

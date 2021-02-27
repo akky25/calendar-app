@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { calendarSlice, CalendarState } from "redux/calendar/calendar-slice";
-import { scheduleSlice, ScheduleState } from "redux/schedule/schedule-slice";
+import { ScheduleState } from "redux/stateType";
+import { scheduleSlice } from "redux/addSchedule/add-schedule-slice";
 
 export type rootType = {
   calendar: CalendarState;

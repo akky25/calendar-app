@@ -1,16 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 
-export type Form = {
-  title?: string;
-  description?: string;
-  date?: dayjs.Dayjs | null;
-  location?: string;
-};
-export type ScheduleState = {
-  form: Form;
-  isDialogOpen: boolean;
-};
+import { Form, ScheduleState } from "redux/stateType";
+
 const initialState: ScheduleState = {
   form: {
     title: "",
@@ -21,6 +13,7 @@ const initialState: ScheduleState = {
   isDialogOpen: false,
 };
 
+// eslint-disable-next-line import/prefer-default-export
 export const scheduleSlice = createSlice({
   name: "schedule",
   initialState,
