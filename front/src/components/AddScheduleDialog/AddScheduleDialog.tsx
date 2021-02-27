@@ -25,6 +25,7 @@ type Props = {
   schedule: ScheduleState;
   closeDialog: () => void;
   setSchedule: (shedule: Form) => void;
+  saveSchedule: () => void;
 };
 
 const useStyled = makeStyles({
@@ -44,6 +45,7 @@ const AddScheduleDialog: FC<Props> = ({
   },
   closeDialog,
   setSchedule,
+  saveSchedule,
 }) => {
   const classes = useStyled();
 
@@ -123,7 +125,7 @@ const AddScheduleDialog: FC<Props> = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="outlined">
+        <Button color="primary" variant="outlined" onClick={saveSchedule}>
           保存
         </Button>
       </DialogActions>
