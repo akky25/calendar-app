@@ -8,11 +8,16 @@ import {
   SchedulesState,
   schedulesSlice,
 } from "redux/schedules/schedules-slice";
+import {
+  currentScheduleSlice,
+  currentScheduleState,
+} from "redux/currentSchedule/currentSchedule-slice";
 
 export type rootType = {
   calendar: CalendarState;
   addSchedule: AddScheduleState;
   schedules: SchedulesState;
+  currentSchedule: currentScheduleState;
 };
 
 const store = configureStore({
@@ -20,6 +25,7 @@ const store = configureStore({
     calendar: calendarSlice.reducer,
     addSchedule: addScheduleSlice.reducer,
     schedules: schedulesSlice.reducer,
+    currentSchedule: currentScheduleSlice.reducer,
   },
 });
 
