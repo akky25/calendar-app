@@ -68,8 +68,6 @@ const AddScheduleDialog: FC<Props> = ({
         </IconButton>
       </DialogActions>
       <DialogContent>
-        <Input />
-        <TextField />
         <Input
           className={classes.input}
           autoFocus
