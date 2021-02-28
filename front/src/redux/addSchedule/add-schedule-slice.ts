@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import dayjs from "dayjs";
 
-import { Form, ScheduleState } from "redux/stateType";
+import { schedulesItem } from "redux/stateType";
 
-const initialState: ScheduleState = {
+export type AddScheduleState = {
+  form: schedulesItem;
+  isDialogOpen: boolean;
+};
+
+const initialState: AddScheduleState = {
   form: {
     title: "",
     description: "",
@@ -14,11 +19,11 @@ const initialState: ScheduleState = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const scheduleSlice = createSlice({
-  name: "schedule",
+export const addScheduleSlice = createSlice({
+  name: "addSchedule",
   initialState,
   reducers: {
-    addScheduleSetValue: (state, action: PayloadAction<Form>) => ({
+    addScheduleSetValue: (state, action: PayloadAction<schedulesItem>) => ({
       ...state,
       form: { ...state.form, ...action.payload },
     }),

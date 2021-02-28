@@ -3,14 +3,14 @@ import { Typography } from "@material-ui/core";
 import dayjs from "dayjs";
 
 import Schedule from "components/Schedule/Schedule";
-import { Form } from "redux/stateType";
+import { schedulesItem } from "redux/stateType";
 import styles from "./style.module.css";
 
 type Props = {
   isToday: boolean;
   textColor: "textPrimary" | "textSecondary";
   day: dayjs.Dayjs;
-  schedules: Form[];
+  schedules: schedulesItem[];
 };
 
 const CalendarElement: FC<Props> = ({ isToday, textColor, day, schedules }) => (

@@ -19,12 +19,13 @@ import {
 import { DatePicker } from "@material-ui/pickers";
 import dayjs from "dayjs";
 
-import { Form, ScheduleState } from "redux/stateType";
+import { schedulesItem } from "redux/stateType";
+import { AddScheduleState } from "redux/addSchedule/add-schedule-slice";
 
 type Props = {
-  schedule: ScheduleState;
+  addSchedule: AddScheduleState;
   closeDialog: () => void;
-  setSchedule: (shedule: Form) => void;
+  setSchedule: (shedule: schedulesItem) => void;
   saveSchedule: () => void;
 };
 
@@ -39,7 +40,7 @@ const useStyled = makeStyles({
 });
 
 const AddScheduleDialog: FC<Props> = ({
-  schedule: {
+  addSchedule: {
     form: { title, location, description, date },
     isDialogOpen,
   },

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Form } from "redux/stateType";
+import { schedulesItem } from "redux/stateType";
 
 export type SchedulesState = {
-  items: Form[];
+  items: schedulesItem[];
   isLoading: boolean;
 };
 const initialState: SchedulesState = {
@@ -15,7 +15,7 @@ export const schedulesSlice = createSlice({
   name: "schedules",
   initialState,
   reducers: {
-    addSchedulesItem: (state, action: PayloadAction<Form>) => ({
+    addSchedulesItem: (state, action: PayloadAction<schedulesItem>) => ({
       ...state,
       items: [
         ...state.items,

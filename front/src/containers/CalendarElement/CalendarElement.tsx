@@ -3,13 +3,13 @@ import dayjs from "dayjs";
 
 import CalendarElement from "components/CalendarElement/CalendarElement";
 import { CalendarState } from "redux/calendar/calendar-slice";
-import { Form } from "redux/stateType";
+import { schedulesItem } from "redux/stateType";
 import { getMonth, isSameDay } from "services/calendar";
 
 type Props = {
   day: dayjs.Dayjs;
   month: CalendarState;
-  schedules: Form[];
+  schedules: schedulesItem[];
 };
 
 const EnhancedCalendarElement: FC<Props> = ({ day, month, schedules }) => {

@@ -5,17 +5,17 @@ import dayjs from "dayjs";
 import CalendarElement from "containers/CalendarElement/CalendarElement";
 import DayOfWeekElement from "components/DayOfWeekElement/DayOfWeekElement";
 import { CalendarState } from "redux/calendar/calendar-slice";
-import { Form } from "redux/stateType";
+import { schedulesItem } from "redux/stateType";
 import styles from "./style.module.css";
 
 type Props = {
   // calendar: dayjs.Dayjs[];
   calendar: {
     date: dayjs.Dayjs;
-    schedules: Form[];
+    schedules: schedulesItem[];
   }[];
   month: CalendarState;
-  openAddScheduleDialog: (value: Form) => void;
+  openAddScheduleDialog: (value: schedulesItem) => void;
 };
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
