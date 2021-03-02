@@ -9,15 +9,15 @@ import {
   schedulesSlice,
 } from "redux/schedules/schedules-slice";
 import {
+  CurrentScheduleState,
   currentScheduleSlice,
-  currentScheduleState,
 } from "redux/currentSchedule/currentSchedule-slice";
 
 export type rootType = {
   calendar: CalendarState;
   addSchedule: AddScheduleState;
   schedules: SchedulesState;
-  currentSchedule: currentScheduleState;
+  currentSchedule: CurrentScheduleState;
 };
 
 const store = configureStore({

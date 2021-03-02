@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { schedulesItem } from "redux/stateType";
 
-export type currentScheduleState = {
+export type CurrentScheduleState = {
   item: schedulesItem | null;
   isDialogOpen: boolean;
 };
 
-const initialState: currentScheduleState = {
+const initialState: CurrentScheduleState = {
   item: null,
   isDialogOpen: false,
 };

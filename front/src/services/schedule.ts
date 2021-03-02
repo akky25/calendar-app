@@ -10,5 +10,5 @@ export const setSchedules = (
 ) =>
   calendar.map((c) => ({
     date: c,
-    schedules: schedules.filter((e) => isSameDay(e.date as dayjs.Dayjs, c)),
+    schedules: schedules.filter((e) => isSameDay(e.date, c)),
   }));

@@ -2,7 +2,8 @@ import { FC } from "react";
 import { Typography } from "@material-ui/core";
 import dayjs from "dayjs";
 
-import Schedule from "components/Schedule/Schedule";
+// import Schedule from "components/Schedule/Schedule";
+import Schedule from "containers/Schedule/Schedule";
 import { schedulesItem } from "redux/stateType";
 import styles from "./style.module.css";
 
@@ -22,9 +23,7 @@ const CalendarElement: FC<Props> = ({ isToday, textColor, day, schedules }) => (
       variant="caption"
       component="div"
     >
-      <span className={isToday ? styles.today : ""}>
-        {day.format(day.date() === 1 ? "M月D日" : "D")}
-      </span>
+      <span className={isToday ? styles.today : ""}>{day.format("D")}</span>
     </Typography>
     <div className={styles.schedules}>
       {schedules.map((e) => (
