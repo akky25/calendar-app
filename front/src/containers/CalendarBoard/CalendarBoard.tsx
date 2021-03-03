@@ -3,20 +3,27 @@ import { useSelector, useDispatch } from "react-redux";
 
 import CalendarBoard from "components/CalendarBoard/CalendarBoard";
 import { CalendarState } from "redux/calendar/calendar-slice";
-import { Form, scheduleSlice } from "redux/schedule/schedule-slice";
+import { schedulesItem } from "redux/stateType";
+import { addScheduleSlice } from "redux/addSchedule/add-schedule-slice";
 import { rootType } from "redux/rootSlice";
 import { createCalendar } from "services/calendar";
+import { setSchedules } from "services/schedule";
 
 const EnhancedCalendarBoard: FC = () => {
   const calendar = useSelector<rootType, CalendarState>(
     (state) => state.calendar
   );
-  const calendarArr = createCalendar(calendar);
+  const schedulesItems = useSelector<rootType, schedulesItem[]>(
+    // (state) => state.schedules.items
+    (state) => state.schedules.items
+  );
+
+  const calendarArr = setSchedules(createCalendar(calendar), schedulesItems);
 
   const dispatch = useDispatch();
-  const openAddScheduleDialog = (value: Form) => {
-    dispatch(scheduleSlice.actions.addScheduleOpenDialog());
-    dispatch(scheduleSlice.actions.addScheduleSetValue(value));
+  const openAddScheduleDialog = (value: schedulesItem) => {
+    dispatch(addScheduleSlice.actions.addScheduleOpenDialog());
+    dispatch(addScheduleSlice.actions.addScheduleSetValue(value));
   };
 
   return (

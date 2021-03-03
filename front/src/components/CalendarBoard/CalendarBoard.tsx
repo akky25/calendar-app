@@ -5,13 +5,17 @@ import dayjs from "dayjs";
 import CalendarElement from "containers/CalendarElement/CalendarElement";
 import DayOfWeekElement from "components/DayOfWeekElement/DayOfWeekElement";
 import { CalendarState } from "redux/calendar/calendar-slice";
-import { Form } from "redux/schedule/schedule-slice";
+import { schedulesItem } from "redux/stateType";
 import styles from "./style.module.css";
 
 type Props = {
-  calendar: dayjs.Dayjs[];
+  // calendar: dayjs.Dayjs[];
+  calendar: {
+    date: dayjs.Dayjs;
+    schedules: schedulesItem[];
+  }[];
   month: CalendarState;
-  openAddScheduleDialog: (value: Form) => void;
+  openAddScheduleDialog: (value: schedulesItem) => void;
 };
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
@@ -28,13 +32,13 @@ const CalendarBoard: FC<Props> = ({
           <DayOfWeekElement dayOfWeek={d} />
         </li>
       ))}
-      {calendar.map((c) => {
-        const onclick = () => openAddScheduleDialog({ date: c });
+      {calendar.map(({ date, schedules }) => {
+        const onclick = () => openAddScheduleDialog({ date });
 
         return (
           // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-          <li key={c.toISOString()} onClick={onclick} onKeyUp={onclick}>
-            <CalendarElement day={c} month={month} />
+          <li key={date.toISOString()} onClick={onclick} onKeyUp={onclick}>
+            <CalendarElement day={date} month={month} schedules={schedules} />
           </li>
         );
       })}

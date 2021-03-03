@@ -3,29 +3,42 @@ import { useSelector, useDispatch } from "react-redux";
 
 import AddScheduleDialog from "components/AddScheduleDialog/AddScheduleDialog";
 import {
-  Form,
-  ScheduleState,
-  scheduleSlice,
-} from "redux/schedule/schedule-slice";
+  addScheduleSlice,
+  AddScheduleState,
+} from "redux/addSchedule/add-schedule-slice";
+import { Form, schedulesItem } from "redux/stateType";
+import { schedulesSlice } from "redux/schedules/schedules-slice";
 import { rootType } from "redux/rootSlice";
 
 const EnhancedAddScheduleDialog: FC = () => {
-  const schedule = useSelector<rootType, ScheduleState>(
-    (state) => state.schedule
+  const schedule = useSelector<rootType, AddScheduleState>(
+    (state) => state.addSchedule
   );
   const dispatch = useDispatch();
+
   const closeDialog = () =>
-    dispatch(scheduleSlice.actions.addScheduleCloseDialog());
+    dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
 
   const setSchedule = (value: Form) => {
-    dispatch(scheduleSlice.actions.addScheduleSetValue(value));
+    dispatch(addScheduleSlice.actions.addScheduleSetValue(value));
+  };
+
+  const saveSchedule = () => {
+    const saveScheduleItem: schedulesItem = {
+      ...schedule.form,
+      title:
+        schedule.form.title === "" ? "（タイトルなし）" : schedule.form.title,
+    };
+    dispatch(schedulesSlice.actions.addSchedulesItem(saveScheduleItem));
+    dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
   };
 
   return (
     <AddScheduleDialog
-      schedule={schedule}
+      addSchedule={schedule}
       closeDialog={closeDialog}
       setSchedule={setSchedule}
+      saveSchedule={saveSchedule}
     />
   );
 };

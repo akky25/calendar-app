@@ -1,5 +1,5 @@
 .element {
-  height: 18vh;
+  height: calc((100vh - 95px) / 5 - 1px);
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
@@ -16,4 +16,13 @@
   color: #fff;
   background-color: #1a73e8;
   border-radius: 50%;
+}
+
+.schedules {
+  height: calc(18vh - 40px);
+  overflow: auto;
+}
+
+.schedules::-webkit-scrollbar {  /* Chrome, Safari 対応 */
+  display: none;
 }

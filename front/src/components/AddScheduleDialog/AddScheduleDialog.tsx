@@ -19,12 +19,14 @@ import {
 import { DatePicker } from "@material-ui/pickers";
 import dayjs from "dayjs";
 
-import { Form, ScheduleState } from "redux/schedule/schedule-slice";
+import { Form } from "redux/stateType";
+import { AddScheduleState } from "redux/addSchedule/add-schedule-slice";
 
 type Props = {
-  schedule: ScheduleState;
+  addSchedule: AddScheduleState;
   closeDialog: () => void;
   setSchedule: (shedule: Form) => void;
+  saveSchedule: () => void;
 };
 
 const useStyled = makeStyles({
@@ -38,12 +40,13 @@ const useStyled = makeStyles({
 });
 
 const AddScheduleDialog: FC<Props> = ({
-  schedule: {
+  addSchedule: {
     form: { title, location, description, date },
     isDialogOpen,
   },
   closeDialog,
   setSchedule,
+  saveSchedule,
 }) => {
   const classes = useStyled();
 
@@ -56,7 +59,8 @@ const AddScheduleDialog: FC<Props> = ({
   const setDescription = (e: ChangeEvent<HTMLInputElement>): void =>
     setSchedule({ description: e.target.value });
 
-  const setDate = (d: dayjs.Dayjs | null): void => setSchedule({ date: d });
+  const setDate = (d: dayjs.Dayjs | null): void =>
+    setSchedule({ date: d ?? undefined });
 
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
@@ -66,8 +70,6 @@ const AddScheduleDialog: FC<Props> = ({
         </IconButton>
       </DialogActions>
       <DialogContent>
-        <Input />
-        <TextField />
         <Input
           className={classes.input}
           autoFocus
@@ -123,7 +125,7 @@ const AddScheduleDialog: FC<Props> = ({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" variant="outlined">
+        <Button color="primary" variant="outlined" onClick={saveSchedule}>
           保存
         </Button>
       </DialogActions>

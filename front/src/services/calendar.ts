@@ -33,3 +33,9 @@ export const getPreviousMonth = (calendar: CalendarState): CalendarState => {
 
   return formatMonth(day);
 };
+
+export const isSameDay = (day1: dayjs.Dayjs, day2: dayjs.Dayjs): boolean => {
+  const compareFormat = "YYYYMMDD";
+
+  return day1.format(compareFormat) === day2.format(compareFormat);
+};
