@@ -1,5 +1,5 @@
 .element {
-  height: 18vh;
+  height: calc((100vh - 95px) / 5 - 1px);
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }

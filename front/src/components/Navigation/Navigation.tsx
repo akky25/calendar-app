@@ -1,5 +1,11 @@
 import { FC } from "react";
-import { IconButton, Toolbar, Typography, makeStyles } from "@material-ui/core";
+import {
+  IconButton,
+  Toolbar,
+  Typography,
+  makeStyles,
+  Hidden,
+} from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 
 import ArrowBackIos from "@material-ui/icons/ArrowBackIos";
@@ -34,19 +40,21 @@ const Navigation: FC<Props> = ({
         <DehazeIcon />
       </IconButton>
       <img src="/images/calendar_icon.png" width="40" height="40" alt="" />
-      <Typography
-        color="textSecondary"
-        variant="h5"
-        className={classes.typography}
-      >
-        カレンダー
-      </Typography>
-      <IconButton size="small" onClick={setPreviousMonth}>
-        <ArrowBackIos />
-      </IconButton>
-      <IconButton size="small" onClick={setNextMonth}>
-        <ArrowForwardIos />
-      </IconButton>
+      <Hidden xsDown>
+        <Typography
+          color="textSecondary"
+          variant="h5"
+          className={classes.typography}
+        >
+          カレンダー
+        </Typography>
+        <IconButton size="small" onClick={setPreviousMonth}>
+          <ArrowBackIos />
+        </IconButton>
+        <IconButton size="small" onClick={setNextMonth}>
+          <ArrowForwardIos />
+        </IconButton>
+      </Hidden>
       <DatePicker
         value={month}
         onChange={setMonth}
