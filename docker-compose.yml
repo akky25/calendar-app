@@ -20,15 +20,15 @@ services:
     command: sh -c "cd /usr/src/app && yarn start"
     # ports:
     #   - "3000:3000"
-    # networks:
-    #   - private-subnet
+    networks:
+      - private-subnet
 
   api:
     build: ./server/
     volumes:
       - "./server:/var/www/server"
-    # networks:
-    #   - private-subnet
+    networks:
+      - private-subnet
     environment:
       - DB_USER=user
       - DB_NAME=calender
@@ -46,8 +46,8 @@ services:
     volumes:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
       - ./db/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
-    # networks:
-    #   - private-subnet
+    networks:
+      - private-subnet
 
 networks:
   private-subnet: {}
