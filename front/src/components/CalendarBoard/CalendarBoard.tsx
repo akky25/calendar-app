@@ -6,10 +6,10 @@ import CalendarElement from "containers/CalendarElement/CalendarElement";
 import DayOfWeekElement from "components/DayOfWeekElement/DayOfWeekElement";
 import { CalendarState } from "redux/calendar/calendar-slice";
 import { schedulesItem } from "redux/stateType";
+// import useGetMembers from "hooks/use-get-schedules";
 import styles from "./style.module.css";
 
 type Props = {
-  // calendar: dayjs.Dayjs[];
   calendar: {
     date: dayjs.Dayjs;
     schedules: schedulesItem[];
@@ -45,5 +45,4 @@ const CalendarBoard: FC<Props> = ({
     </GridList>
   </div>
 );
-
 export default CalendarBoard;

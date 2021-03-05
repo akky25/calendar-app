@@ -22,5 +22,18 @@ export const schedulesSlice = createSlice({
         { ...action.payload, id: state.items.length + 1 },
       ],
     }),
+    setLoading: (state) => ({
+      ...state,
+      isLoading: true,
+    }),
+    fetchItem: (state, action: PayloadAction<schedulesItem[]>) => {
+      const value: SchedulesState = {
+        ...state,
+        isLoading: true,
+        items: action.payload,
+      };
+
+      return value;
+    },
   },
 });
