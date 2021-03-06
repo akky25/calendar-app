@@ -9,6 +9,9 @@ import {
 import { Form, schedulesItem } from "redux/stateType";
 import { schedulesSlice } from "redux/schedules/schedules-slice";
 import { rootType } from "redux/rootSlice";
+// import usePostSchedule from "hooks/use-post-schedule";
+import { postSchedule } from "services/api";
+import { formatSchedule } from "services/schedule";
 
 const EnhancedAddScheduleDialog: FC = () => {
   const schedule = useSelector<rootType, AddScheduleState>(
@@ -29,7 +32,21 @@ const EnhancedAddScheduleDialog: FC = () => {
       title:
         schedule.form.title === "" ? "（タイトルなし）" : schedule.form.title,
     };
-    dispatch(schedulesSlice.actions.addSchedulesItem(saveScheduleItem));
+
+    const asyncSaveSchedules = async (): Promise<void> => {
+      dispatch(schedulesSlice.actions.setLoading());
+
+      const body = {
+        ...saveScheduleItem,
+        date: saveScheduleItem.date.toISOString(),
+      };
+      const result = await postSchedule("schedules", body);
+
+      const newSchedule = formatSchedule(result);
+      dispatch(schedulesSlice.actions.addSchedulesItem(newSchedule));
+    };
+    void asyncSaveSchedules();
+
     dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
   };
 

@@ -8,7 +8,7 @@ import { addScheduleSlice } from "redux/addSchedule/add-schedule-slice";
 import { rootType } from "redux/rootSlice";
 import { createCalendar } from "services/calendar";
 import { setSchedules } from "services/schedule";
-import useGetMembers from "hooks/use-get-schedules";
+import useGetSchedules from "hooks/use-get-schedules";
 
 const EnhancedCalendarBoard: FC = () => {
   const calendar = useSelector<rootType, CalendarState>(
@@ -18,7 +18,7 @@ const EnhancedCalendarBoard: FC = () => {
     (state) => state.schedules.items
   );
 
-  useGetMembers(calendar);
+  useGetSchedules(calendar);
 
   const calendarArr = setSchedules(createCalendar(calendar), schedulesItems);
 

@@ -17,10 +17,7 @@ export const schedulesSlice = createSlice({
   reducers: {
     addSchedulesItem: (state, action: PayloadAction<schedulesItem>) => ({
       ...state,
-      items: [
-        ...state.items,
-        { ...action.payload, id: state.items.length + 1 },
-      ],
+      items: [...state.items, action.payload],
     }),
     setLoading: (state) => ({
       ...state,

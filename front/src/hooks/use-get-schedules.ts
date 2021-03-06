@@ -11,7 +11,7 @@ type param = {
   year: number;
 };
 
-const useGetMembers = (calendar: param): void => {
+const useGetSchedules = (calendar: param): void => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const useGetMembers = (calendar: param): void => {
   }, [calendar, dispatch]);
 };
 
-export default useGetMembers;
+export default useGetSchedules;
