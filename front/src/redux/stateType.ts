@@ -15,3 +15,11 @@ export type Form = {
   location?: string;
   id?: number;
 };
+
+export type resScheduleItem = {
+  title?: string;
+  description?: string;
+  date: string;
+  location?: string;
+  id?: number;
+};
