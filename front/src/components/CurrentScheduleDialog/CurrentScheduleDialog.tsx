@@ -7,7 +7,12 @@ import {
   IconButton,
   Typography,
 } from "@material-ui/core";
-import { LocationOnOutlined, NotesOutlined, Close } from "@material-ui/icons";
+import {
+  LocationOnOutlined,
+  NotesOutlined,
+  Close,
+  DeleteOutlineOutlined,
+} from "@material-ui/icons";
 
 import { CurrentScheduleState } from "redux/currentSchedule/currentSchedule-slice";
 import styles from "./style.module.css";
@@ -15,6 +20,7 @@ import styles from "./style.module.css";
 type Props = {
   currentSchedule: CurrentScheduleState;
   closeDialog: () => void;
+  deleteItem: () => void;
 };
 
 const spacer = (top: number, bottom: number) => ({
@@ -24,10 +30,14 @@ const spacer = (top: number, bottom: number) => ({
 const AddScheduleDialog: FC<Props> = ({
   currentSchedule: { item, isDialogOpen },
   closeDialog,
+  deleteItem,
 }) => (
   <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
     <DialogActions>
       <div className={styles.closeButton}>
+        <IconButton onClick={deleteItem} size="small">
+          <DeleteOutlineOutlined />
+        </IconButton>
         <IconButton onClick={closeDialog} size="small">
           <Close />
         </IconButton>

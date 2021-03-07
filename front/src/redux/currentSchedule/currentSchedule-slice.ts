@@ -4,6 +4,7 @@ import { schedulesItem } from "redux/stateType";
 
 export type CurrentScheduleState = {
   item: schedulesItem | null;
+  // item: schedulesItem;
   isDialogOpen: boolean;
 };
 

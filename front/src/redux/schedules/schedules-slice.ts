@@ -32,5 +32,10 @@ export const schedulesSlice = createSlice({
 
       return value;
     },
+    deleteItem: (state, action: PayloadAction<schedulesItem[]>) => ({
+      ...state,
+      isLoading: false,
+      items: action.payload,
+    }),
   },
 });

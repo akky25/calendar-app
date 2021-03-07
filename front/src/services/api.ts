@@ -30,3 +30,11 @@ export const postSchedule = async (
 
   return result;
 };
+
+export const deleteSchedule = async (path: string): Promise<void> => {
+  const options = { method: "DELETE" };
+
+  await fetch(url(path), options);
+
+  // 204 No Contentが返ってくるので成功の場合は何もreturnしない
+};
