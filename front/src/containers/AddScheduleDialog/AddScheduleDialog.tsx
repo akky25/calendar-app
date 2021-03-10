@@ -9,7 +9,6 @@ import {
 import { Form, schedulesItem } from "redux/stateType";
 import { schedulesSlice } from "redux/schedules/schedules-slice";
 import { rootType } from "redux/rootSlice";
-// import usePostSchedule from "hooks/use-post-schedule";
 import { postSchedule } from "services/api";
 import { formatSchedule } from "services/schedule";
 
@@ -50,12 +49,17 @@ const EnhancedAddScheduleDialog: FC = () => {
     dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
   };
 
+  const setIsEditStart = () => {
+    dispatch(addScheduleSlice.actions.addScheduleStartEdit());
+  };
+
   return (
     <AddScheduleDialog
       addSchedule={schedule}
       closeDialog={closeDialog}
       setSchedule={setSchedule}
       saveSchedule={saveSchedule}
+      setIsEditStart={setIsEditStart}
     />
   );
 };
