@@ -41,7 +41,6 @@ const useGetSchedules = (calendar: param): void => {
         dispatch(schedulesSlice.actions.fetchItem(formatedSchedule));
       } catch (err) {
         if (err instanceof Error) {
-          console.log(err);
           dispatch(schedulesSlice.actions.asyncFailure(err.message));
         } else {
           throw err;

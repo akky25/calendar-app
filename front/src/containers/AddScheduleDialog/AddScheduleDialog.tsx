@@ -46,7 +46,6 @@ const EnhancedAddScheduleDialog: FC = () => {
         dispatch(schedulesSlice.actions.addSchedulesItem(newSchedule));
       } catch (err) {
         if (err instanceof Error) {
-          console.log(err);
           dispatch(schedulesSlice.actions.asyncFailure(err.message));
         } else {
           throw err;

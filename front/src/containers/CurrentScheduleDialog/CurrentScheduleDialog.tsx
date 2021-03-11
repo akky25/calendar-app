@@ -45,7 +45,6 @@ const EnhancedCurrentSchedule: FC = () => {
         dispatch(schedulesSlice.actions.deleteItem(newSchedules));
       } catch (err) {
         if (err instanceof Error) {
-          console.log(err);
           dispatch(schedulesSlice.actions.asyncFailure(err.message));
         } else {
           throw err;
