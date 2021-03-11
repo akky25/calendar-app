@@ -39,10 +39,19 @@ const EnhancedAddScheduleDialog: FC = () => {
         ...saveScheduleItem,
         date: saveScheduleItem.date.toISOString(),
       };
-      const result = await postSchedule("schedules", body);
+      try {
+        const result = await postSchedule("schedules", body);
 
-      const newSchedule = formatSchedule(result);
-      dispatch(schedulesSlice.actions.addSchedulesItem(newSchedule));
+        const newSchedule = formatSchedule(result);
+        dispatch(schedulesSlice.actions.addSchedulesItem(newSchedule));
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+          dispatch(schedulesSlice.actions.asyncFailure(err.message));
+        } else {
+          throw err;
+        }
+      }
     };
     void asyncSaveSchedules();
 

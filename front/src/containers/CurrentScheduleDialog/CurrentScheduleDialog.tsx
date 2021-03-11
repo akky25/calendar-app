@@ -37,11 +37,20 @@ const EnhancedCurrentSchedule: FC = () => {
 
       const currentSchedules = schedules.items;
 
-      await deleteSchedule(`schedules/${deleteId}`);
+      try {
+        await deleteSchedule(`schedules/${deleteId}`);
 
-      // 成功したらローカルのstateを削除
-      const newSchedules = currentSchedules.filter((s) => s.id !== id);
-      dispatch(schedulesSlice.actions.deleteItem(newSchedules));
+        // 成功したらローカルのstateを削除
+        const newSchedules = currentSchedules.filter((s) => s.id !== id);
+        dispatch(schedulesSlice.actions.deleteItem(newSchedules));
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err);
+          dispatch(schedulesSlice.actions.asyncFailure(err.message));
+        } else {
+          throw err;
+        }
+      }
     };
 
     if (id !== undefined) {
