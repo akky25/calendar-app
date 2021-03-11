@@ -23,10 +23,9 @@ const useGetSchedules = (calendar: param): void => {
       const { month: nextMonth, year: nextYear } = getNextMonth(calendar);
 
       try {
-        const thisMonthSchedules = await getSchedules(`schedules`);
-        // const thisMonthSchedules = await getSchedules(
-        //   `schedules?month=${month.toString()}&year=${year.toString()}`
-        // );
+        const thisMonthSchedules = await getSchedules(
+          `schedules?month=${month.toString()}&year=${year.toString()}`
+        );
         const preMonthSchedules = await getSchedules(
           `schedules?month=${preMonth.toString()}&year=${preYear.toString()}`
         );
