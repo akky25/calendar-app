@@ -10,6 +10,7 @@ import {
   IconButton,
   makeStyles,
   Typography,
+  Tooltip,
 } from "@material-ui/core";
 import {
   LocationOnOutlined,
@@ -74,9 +75,11 @@ const AddScheduleDialog: FC<Props> = ({
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
       <DialogActions>
-        <IconButton onClick={closeDialog} size="small">
-          <Close />
-        </IconButton>
+        <Tooltip title="削除" placement="bottom">
+          <IconButton onClick={closeDialog} size="small">
+            <Close />
+          </IconButton>
+        </Tooltip>
       </DialogActions>
       <DialogContent>
         <Input

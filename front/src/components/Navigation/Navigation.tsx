@@ -5,6 +5,7 @@ import {
   Typography,
   makeStyles,
   Hidden,
+  Tooltip,
 } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 
@@ -48,12 +49,16 @@ const Navigation: FC<Props> = ({
         >
           カレンダー
         </Typography>
-        <IconButton size="small" onClick={setPreviousMonth}>
-          <ArrowBackIos />
-        </IconButton>
-        <IconButton size="small" onClick={setNextMonth}>
-          <ArrowForwardIos />
-        </IconButton>
+        <Tooltip title="前の月" placement="bottom">
+          <IconButton size="small" onClick={setPreviousMonth}>
+            <ArrowBackIos />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="次の月" placement="bottom">
+          <IconButton size="small" onClick={setNextMonth}>
+            <ArrowForwardIos />
+          </IconButton>
+        </Tooltip>
       </Hidden>
       <DatePicker
         value={month}
