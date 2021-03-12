@@ -24,5 +24,6 @@ export const formatSchedule = (schedule: resScheduleItem): schedulesItem => ({
 export const isCloseDialog = (schedule: schedulesItem) => {
   const message = "保存されていない変更を破棄しますか？";
 
+  // eslint-disable-next-line no-alert
   return isScheduleEmpty(schedule) || window.confirm(message);
 };
