@@ -10,7 +10,7 @@ import { Form, schedulesItem } from "redux/stateType";
 import { schedulesSlice } from "redux/schedules/schedules-slice";
 import { rootType } from "redux/rootSlice";
 import { postSchedule } from "services/api";
-import { formatSchedule } from "services/schedule";
+import { formatSchedule, isCloseDialog } from "services/schedule";
 
 const EnhancedAddScheduleDialog: FC = () => {
   const schedule = useSelector<rootType, AddScheduleState>(
@@ -18,8 +18,11 @@ const EnhancedAddScheduleDialog: FC = () => {
   );
   const dispatch = useDispatch();
 
-  const closeDialog = () =>
-    dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
+  const closeDialog = () => {
+    if (isCloseDialog(schedule.form)) {
+      dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
+    }
+  };
 
   const setSchedule = (value: Form) => {
     dispatch(addScheduleSlice.actions.addScheduleSetValue(value));
