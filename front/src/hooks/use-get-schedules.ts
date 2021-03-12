@@ -22,22 +22,30 @@ const useGetSchedules = (calendar: param): void => {
       const { month: preMonth, year: preYear } = getPreviousMonth(calendar);
       const { month: nextMonth, year: nextYear } = getNextMonth(calendar);
 
-      const thisMonthSchedules = await getSchedules(
-        `schedules?month=${month.toString()}&year=${year.toString()}`
-      );
-      const preMonthSchedules = await getSchedules(
-        `schedules?month=${preMonth.toString()}&year=${preYear.toString()}`
-      );
-      const nextMonthSchedules = await getSchedules(
-        `schedules?month=${nextMonth.toString()}&year=${nextYear.toString()}`
-      );
-      const schedules = [
-        ...thisMonthSchedules,
-        ...nextMonthSchedules,
-        ...preMonthSchedules,
-      ];
-      const formatedSchedule = schedules.map((r) => formatSchedule(r));
-      dispatch(schedulesSlice.actions.fetchItem(formatedSchedule));
+      try {
+        const thisMonthSchedules = await getSchedules(
+          `schedules?month=${month.toString()}&year=${year.toString()}`
+        );
+        const preMonthSchedules = await getSchedules(
+          `schedules?month=${preMonth.toString()}&year=${preYear.toString()}`
+        );
+        const nextMonthSchedules = await getSchedules(
+          `schedules?month=${nextMonth.toString()}&year=${nextYear.toString()}`
+        );
+        const schedules = [
+          ...thisMonthSchedules,
+          ...nextMonthSchedules,
+          ...preMonthSchedules,
+        ];
+        const formatedSchedule = schedules.map((r) => formatSchedule(r));
+        dispatch(schedulesSlice.actions.fetchItem(formatedSchedule));
+      } catch (err) {
+        if (err instanceof Error) {
+          dispatch(schedulesSlice.actions.asyncFailure(err.message));
+        } else {
+          throw err;
+        }
+      }
     };
 
     void load();

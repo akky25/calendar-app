@@ -6,6 +6,7 @@ import { schedulesItem, Form } from "redux/stateType";
 export type AddScheduleState = {
   form: schedulesItem;
   isDialogOpen: boolean;
+  isStartEdit: boolean;
 };
 
 const initialState: AddScheduleState = {
@@ -16,6 +17,7 @@ const initialState: AddScheduleState = {
     location: "",
   },
   isDialogOpen: false,
+  isStartEdit: false,
 };
 
 export const addScheduleSlice = createSlice({
@@ -32,6 +34,10 @@ export const addScheduleSlice = createSlice({
     }),
     addScheduleCloseDialog: () => ({
       ...initialState,
+    }),
+    addScheduleStartEdit: (state) => ({
+      ...state,
+      isStartEdit: true,
     }),
   },
 });

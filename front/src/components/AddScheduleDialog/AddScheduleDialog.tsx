@@ -9,6 +9,8 @@ import {
   Grid,
   IconButton,
   makeStyles,
+  Typography,
+  Tooltip,
 } from "@material-ui/core";
 import {
   LocationOnOutlined,
@@ -27,15 +29,19 @@ type Props = {
   closeDialog: () => void;
   setSchedule: (shedule: Form) => void;
   saveSchedule: () => void;
+  setIsEditStart: () => void;
 };
 
 const useStyled = makeStyles({
   input: {
-    marginBottom: "32px",
+    // marginBottom: "32px",
     fontSize: "22px",
   },
   textfield: {
     margin: "4px 0",
+  },
+  validation: {
+    height: 32,
   },
 });
 
@@ -43,10 +49,12 @@ const AddScheduleDialog: FC<Props> = ({
   addSchedule: {
     form: { title, location, description, date },
     isDialogOpen,
+    isStartEdit,
   },
   closeDialog,
   setSchedule,
   saveSchedule,
+  setIsEditStart,
 }) => {
   const classes = useStyled();
 
@@ -62,12 +70,16 @@ const AddScheduleDialog: FC<Props> = ({
   const setDate = (d: dayjs.Dayjs | null): void =>
     setSchedule({ date: d ?? undefined });
 
+  const isTitleInvalid = !title && isStartEdit;
+
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} maxWidth="xs" fullWidth>
       <DialogActions>
-        <IconButton onClick={closeDialog} size="small">
-          <Close />
-        </IconButton>
+        <Tooltip title="削除" placement="bottom">
+          <IconButton onClick={closeDialog} size="small">
+            <Close />
+          </IconButton>
+        </Tooltip>
       </DialogActions>
       <DialogContent>
         <Input
@@ -77,7 +89,16 @@ const AddScheduleDialog: FC<Props> = ({
           placeholder="タイトルと日時を追加"
           value={title}
           onChange={setTile}
+          onBlur={setIsEditStart}
+          error={isTitleInvalid}
         />
+        <div className={classes.validation}>
+          {isTitleInvalid && (
+            <Typography variant="caption" component="div" color="error">
+              タイトルは必須です。
+            </Typography>
+          )}
+        </div>
         <Grid container spacing={1} alignItems="center" justify="space-between">
           <Grid item>
             <AccessTime />

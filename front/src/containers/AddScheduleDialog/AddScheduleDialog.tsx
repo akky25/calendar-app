@@ -9,9 +9,8 @@ import {
 import { Form, schedulesItem } from "redux/stateType";
 import { schedulesSlice } from "redux/schedules/schedules-slice";
 import { rootType } from "redux/rootSlice";
-// import usePostSchedule from "hooks/use-post-schedule";
 import { postSchedule } from "services/api";
-import { formatSchedule } from "services/schedule";
+import { formatSchedule, isCloseDialog } from "services/schedule";
 
 const EnhancedAddScheduleDialog: FC = () => {
   const schedule = useSelector<rootType, AddScheduleState>(
@@ -19,8 +18,11 @@ const EnhancedAddScheduleDialog: FC = () => {
   );
   const dispatch = useDispatch();
 
-  const closeDialog = () =>
-    dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
+  const closeDialog = () => {
+    if (isCloseDialog(schedule.form)) {
+      dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
+    }
+  };
 
   const setSchedule = (value: Form) => {
     dispatch(addScheduleSlice.actions.addScheduleSetValue(value));
@@ -40,14 +42,26 @@ const EnhancedAddScheduleDialog: FC = () => {
         ...saveScheduleItem,
         date: saveScheduleItem.date.toISOString(),
       };
-      const result = await postSchedule("schedules", body);
+      try {
+        const result = await postSchedule("schedules", body);
 
-      const newSchedule = formatSchedule(result);
-      dispatch(schedulesSlice.actions.addSchedulesItem(newSchedule));
+        const newSchedule = formatSchedule(result);
+        dispatch(schedulesSlice.actions.addSchedulesItem(newSchedule));
+      } catch (err) {
+        if (err instanceof Error) {
+          dispatch(schedulesSlice.actions.asyncFailure(err.message));
+        } else {
+          throw err;
+        }
+      }
     };
     void asyncSaveSchedules();
 
     dispatch(addScheduleSlice.actions.addScheduleCloseDialog());
+  };
+
+  const setIsEditStart = () => {
+    dispatch(addScheduleSlice.actions.addScheduleStartEdit());
   };
 
   return (
@@ -56,6 +70,7 @@ const EnhancedAddScheduleDialog: FC = () => {
       closeDialog={closeDialog}
       setSchedule={setSchedule}
       saveSchedule={saveSchedule}
+      setIsEditStart={setIsEditStart}
     />
   );
 };

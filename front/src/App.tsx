@@ -4,6 +4,7 @@ import Navigation from "containers/Navigation/Navigation";
 import CalenderBoard from "containers/CalendarBoard/CalendarBoard";
 import AddScheduleDialog from "containers/AddScheduleDialog/AddScheduleDialog";
 import CurrentScheduleDialog from "containers/CurrentScheduleDialog/CurrentScheduleDialog";
+import ErrorSnackbar from "containers/ErrorSnackbar/ErrorSnackbar";
 
 const App: FC = () => (
   <div>
@@ -11,6 +12,7 @@ const App: FC = () => (
     <CalenderBoard />
     <AddScheduleDialog />
     <CurrentScheduleDialog />
+    <ErrorSnackbar />
   </div>
 );
 

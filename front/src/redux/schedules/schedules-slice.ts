@@ -5,10 +5,12 @@ import { schedulesItem } from "redux/stateType";
 export type SchedulesState = {
   items: schedulesItem[];
   isLoading: boolean;
+  error: string | null;
 };
 const initialState: SchedulesState = {
   items: [],
   isLoading: false,
+  error: null,
 };
 
 export const schedulesSlice = createSlice({
@@ -36,6 +38,14 @@ export const schedulesSlice = createSlice({
       ...state,
       isLoading: false,
       items: action.payload,
+    }),
+    asyncFailure: (state, action: PayloadAction<string>) => ({
+      ...state,
+      error: action.payload,
+    }),
+    resetError: (state) => ({
+      ...state,
+      error: null,
     }),
   },
 });

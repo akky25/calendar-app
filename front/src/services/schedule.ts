@@ -3,6 +3,9 @@ import dayjs from "dayjs";
 import { schedulesItem, resScheduleItem } from "redux/stateType";
 import { isSameDay } from "./calendar";
 
+const isScheduleEmpty = (schedule: schedulesItem) =>
+  !schedule.title && !schedule.description && !schedule.location;
+
 // eslint-disable-next-line import/prefer-default-export
 export const setSchedules = (
   calendar: dayjs.Dayjs[],
@@ -17,3 +20,9 @@ export const formatSchedule = (schedule: resScheduleItem): schedulesItem => ({
   ...schedule,
   date: dayjs(schedule.date),
 });
+
+export const isCloseDialog = (schedule: schedulesItem) => {
+  const message = "保存されていない変更を破棄しますか？";
+
+  return isScheduleEmpty(schedule) || window.confirm(message);
+};
